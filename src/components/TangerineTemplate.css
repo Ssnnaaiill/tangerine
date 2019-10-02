@@ -1,0 +1,18 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css); .notosanskr * { font-family: 'Noto Sans KR', sans-serif; }
+
+#header {
+  font-family: 'Noto Sans KR';
+  font-weight: 600;
+  background: orange;
+  width: 100%;
+  top: 0;
+  left: 0;
+  font-size: 2rem;
+  position: fixed;
+  padding: 1rem;
+}
+
+#text-area {
+  left: 0;
+  top: 0;
+}

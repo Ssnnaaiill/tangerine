@@ -1,28 +1,33 @@
 import React, { Component } from 'react';
 import Displayer from './Displayer';
+import './Loader.css';
 
 class Loader extends Component {
 
   // file is null by default
   state = {
+    name: '...',
     text: ''
   }
 
   // get file object from disk
   handleChange = (e) => {
-    e.preventDefault();
-
+    
     let file = e.target.files[0];
 
     // check if file exists
     if (file) {
+      this.setState({
+        name: file.name
+      });
+
       let data = new FormData();
       data.append('file', file);
+
+      this.readFile(file);
     } else {
       alert('File is not selected!');
     }
-
-    this.readFile(file);
   }
 
   readFile = (file) => {
@@ -37,13 +42,18 @@ class Loader extends Component {
 
   render() {
     const { handleChange } = this;
-    const { text } = this.state;
+    const { name, text } = this.state;
 
     return (
-      <div>
-        <input type="file" onChange={handleChange}/>
-        <Displayer text={text}/>
-      </div>
+      <>
+      <section id="loader">
+        <label htmlFor="get-file">불러오기</label>
+        <input type="file" id="get-file" onChange={handleChange}/>
+      </section>
+      {
+        name === '' || text === '' ? <></> :<Displayer name={name} text={text}/>
+      }
+      </>
     );
   }
 }

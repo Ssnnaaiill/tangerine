@@ -1,17 +1,22 @@
 import React from 'react';
+import './Displayer.css';
 
-const Displayer = ({ text }) => {
+const Displayer = ({ name, text }) => {
   return (
-    <div>
-    {
-      text.split('\n').map(
-        (line) => {
-          return (
-            <span>{line}<br/></span>
-          );
-        }
-      )
-    }</div>
+    <section id="displayer">
+      <div id="title">{name}</div>
+      <div id="text-content">
+      {
+        text.split('\n').map(
+          (line) => {
+            return (
+              <span>{line}<br/><br/></span>
+            );
+          }
+        )
+      }
+      </div>
+    </section>
   );
 }
 

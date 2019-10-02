@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import Loader from './components/Loader';
+import TangerineTemplate from './components/TangerineTemplate';
 
 class App extends Component {
 
-
   render() {
     return (
-      <div className="container">
-        <Loader/>
-      </div>
+      <TangerineTemplate/>
     );
   }
 }
