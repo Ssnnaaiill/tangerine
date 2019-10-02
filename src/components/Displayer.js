@@ -1,8 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Displayer = ({ text }) => {
   return (
-    <div>{text}</div>
+    <div>
+    {
+      text.split('\n').map(
+        (line) => {
+          return (
+            <span>{line}<br/></span>
+          );
+        }
+      )
+    }</div>
   );
 }
 

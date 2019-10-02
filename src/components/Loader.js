@@ -19,7 +19,7 @@ class Loader extends Component {
       let data = new FormData();
       data.append('file', file);
     } else {
-      alert('select a file first');
+      alert('File is not selected!');
     }
 
     this.readFile(file);
@@ -28,7 +28,6 @@ class Loader extends Component {
   readFile = (file) => {
     let fileReader = new FileReader();
     fileReader.onload = () => {
-      //console.log(fileReader.result);
       this.setState({
         text: fileReader.result
       });
