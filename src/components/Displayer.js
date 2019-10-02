@@ -1,5 +1,4 @@
 import React from 'react';
-import './Displayer.css';
 
 const Displayer = ({ name, text }) => {
   return (

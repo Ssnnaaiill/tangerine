@@ -1,6 +1,5 @@
 import React from 'react';
 import Loader from './Loader';
-import './TangerineTemplate.css';
 
 const TangerineTemplate = () => {
   return (

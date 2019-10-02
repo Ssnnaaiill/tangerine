@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Displayer from './Displayer';
-import './Loader.css';
 
 class Loader extends Component {
 
