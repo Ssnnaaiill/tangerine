@@ -2,40 +2,56 @@ import React, { Component } from 'react';
 
 class Loader extends Component {
 
+  state = {
+    text: ''
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
-    
-    let file = this.fileInput.current.files[0];
-    let fileReader = new FileReader();
-    
-    fileReader.onload = () => {
-      console.log(fileReader.result);
-    };
-    fileReader.readAsText(file);
+    this.setState({
+      text: ''
+    });
+  }
 
-    if (file.name !== null) {
-      console.log(this.state.text);
-      alert(`${file.name}`);
-      this.setState({
-        text: file
-      });
-
-      console.log(this.state.text);
-
-    } else {
-      alert('Text file is not selected');
+  readTextFile = (file) => {
+    var rawFile = new XMLHttpRequest();
+    if (file !== null) {
+      rawFile.open('GET', file, false);
+      rawFile.onreadystatechange = () => {
+        if (rawFile.readyState === 4) {
+          if (rawFile.status === 200 || rawFile.status === 0) {
+            let allText = rawFile.responseText;
+            this.setState({
+              file: this.state.file,
+              text: allText
+            });
+          }
+        }
+      }
+      rawFile.send(null);
     }
+  }
+
+  componentDidMount() {
+    this.readTextFile(localStorage.getItem('TEXTFILE'));
   }
 
   render() {
     const { handleSubmit } = this;
+    const { text } = this.state;
 
     return (
-      <div className="Loader">
+      <div>
         <form onSubmit={handleSubmit}>
-          <input type="file"/>
-          <button type="submit">submit</button>
+        <label>
+          Upload file
+          <input type="file" ref={this.FileInput} />
+        </label>
+        <br/>
+        <button type="submit">submit</button>
+        <Loader />
         </form>
+        
       </div>
     );
   }
