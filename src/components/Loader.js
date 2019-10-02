@@ -1,57 +1,49 @@
 import React, { Component } from 'react';
+import Displayer from './Displayer';
 
 class Loader extends Component {
 
+  // file is null by default
   state = {
     text: ''
-  };
+  }
 
-  handleSubmit = (e) => {
+  // get file object from disk
+  handleChange = (e) => {
     e.preventDefault();
-    this.setState({
-      text: ''
-    });
-  }
 
-  readTextFile = (file) => {
-    var rawFile = new XMLHttpRequest();
-    if (file !== null) {
-      rawFile.open('GET', file, false);
-      rawFile.onreadystatechange = () => {
-        if (rawFile.readyState === 4) {
-          if (rawFile.status === 200 || rawFile.status === 0) {
-            let allText = rawFile.responseText;
-            this.setState({
-              file: this.state.file,
-              text: allText
-            });
-          }
-        }
-      }
-      rawFile.send(null);
+    let file = e.target.files[0];
+
+    // check if file exists
+    if (file) {
+      let data = new FormData();
+      data.append('file', file);
+    } else {
+      alert('select a file first');
     }
+
+    this.readFile(file);
   }
 
-  componentDidMount() {
-    this.readTextFile(localStorage.getItem('TEXTFILE'));
+  readFile = (file) => {
+    let fileReader = new FileReader();
+    fileReader.onload = () => {
+      //console.log(fileReader.result);
+      this.setState({
+        text: fileReader.result
+      });
+    }
+    fileReader.readAsText(file);
   }
 
   render() {
-    const { handleSubmit } = this;
+    const { handleChange } = this;
     const { text } = this.state;
 
     return (
       <div>
-        <form onSubmit={handleSubmit}>
-        <label>
-          Upload file
-          <input type="file" ref={this.FileInput} />
-        </label>
-        <br/>
-        <button type="submit">submit</button>
-        <Loader />
-        </form>
-        
+        <input type="file" onChange={handleChange}/>
+        <Displayer text={text}/>
       </div>
     );
   }
