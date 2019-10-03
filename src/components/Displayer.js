@@ -9,7 +9,7 @@ const Displayer = ({ name, text }) => {
         text.split('\n').map(
           (line) => {
             return (
-              <span>{line}<br/><br/></span>
+              <span>{line}<br className="nodrag"/><br className="nodrag"/></span>
             );
           }
         )

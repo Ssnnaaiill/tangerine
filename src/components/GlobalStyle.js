@@ -13,6 +13,79 @@ const GlobalStyle = createGlobalStyle`
     color: ${props => props.theme.mode === 'dark' ? '#f0f0f0' : '#000'};
   }
 
+  .nodrag {
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select:none;
+  }
+
+
+  /* Toggle Theme */
+
+  #toggle-theme {
+    position: fixed;
+    top: 1.5rem;
+    right: 10rem;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    vertical-align:middle;
+  }
+
+  .switch input {display:none;}
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #111;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+   
+  input:checked + .slider {
+    background-color: orange;
+  }
+   
+  input:focus + .slider {
+    box-shadow: 0 0 1px orange;
+  }
+   
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  .slider.round {
+    border-radius: 34px;
+  }
+   
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
 
   /* TangerineTemplate */
 
@@ -38,7 +111,7 @@ const GlobalStyle = createGlobalStyle`
     right: 0.7rem;
   }
   
-  label {
+  #file-load-label {
     font-size: inherit;
     font-weight: 500;
     line-height: normal;
@@ -57,7 +130,7 @@ const GlobalStyle = createGlobalStyle`
     transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
   }
   
-  label:hover {
+  #file-load-label:hover {
     color: rgba(255, 255, 255, 0.85);
     box-shadow: rgba(1, 1, 1, 0.9) 0 80px 0px 2px inset;
   }
@@ -89,11 +162,12 @@ const GlobalStyle = createGlobalStyle`
     color: rgba(255, 255, 255, 0.85);
     background: #111;
     position: fixed;
-    top: 0.5rem;
     left: 40%;
-    right: 40%;
+    right: auto;
+    top: 0.5rem;
     text-align: center;
-    max-width: 20%;
+    min-width: 20%;
+    max-width: 60%;
     padding: 1rem 2rem;
     border-radius: 0.3rem;
   }

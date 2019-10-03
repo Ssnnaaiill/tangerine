@@ -46,7 +46,7 @@ class Loader extends Component {
     return (
       <>
       <section id="loader">
-        <label htmlFor="get-file">불러오기</label>
+        <label id="file-load-label" htmlFor="get-file">불러오기</label>
         <input type="file" id="get-file" onChange={handleChange}/>
       </section>
       {
