@@ -17,8 +17,7 @@ $ yarn add styled-components styled-theming local-storage-fallback
 
 ## Loader
 우측 상단의 **불러오기** 버튼을 클릭해 디스크에서 txt 파일을 불러옵니다.
-![](https://i.imgur.com/Gg2PiP0.gif)
 
 ### Displayer
+
 불러온 txt 파일의 내용을 텍스트 영역에 출력합니다. **불러오기** 버튼 좌측의 **토글**을 클릭해서 다크 모드 / 라이트 모드로 변환할 수 있습니다.
-![](https://i.imgur.com/nBVG864.gif)
